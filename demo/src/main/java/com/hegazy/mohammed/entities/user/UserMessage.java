@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import com.hegazy.mohammed.entities.audit.UserAuditing;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -25,11 +26,8 @@ import lombok.ToString;
  
 @Entity
 @Table(name="user_message")
-public class UserMessage {
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(insertable=false, updatable=false)
-	private int id;
+public class UserMessage extends UserAuditing {
+
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JsonIgnore
@@ -42,6 +40,5 @@ public class UserMessage {
 	private User targetId;
 	
 	private String message;
-	private LocalDateTime createdAt;
-	private LocalDateTime UpdatedAt ;
+
 }

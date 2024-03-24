@@ -2,6 +2,7 @@ package com.hegazy.mohammed.entities.user;
 
 import java.time.LocalDateTime;
 
+import com.hegazy.mohammed.entities.audit.UserAuditing;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -22,11 +23,8 @@ import lombok.ToString;
 @NoArgsConstructor
 @Entity
 @Table(name = "user_post")
-public class UserPost {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(insertable = false, updatable = false)
-	private int id;
+public class UserPost extends UserAuditing {
+
 
 	@ManyToOne(cascade = {CascadeType.REMOVE,CascadeType.REFRESH,CascadeType.MERGE})
 	@JoinColumn(name = "userId")
@@ -39,15 +37,12 @@ public class UserPost {
 	 private User senderId;
 
 	private String message;
-	private LocalDateTime createdAt;
-	private LocalDateTime UpdatedAt;
-	
+
 	public UserPost( String message, LocalDateTime createdAt, LocalDateTime updatedAt) {
 		 
 		this.senderId = senderId;
 		this.message = message;
-		this.createdAt = createdAt;
-		UpdatedAt = updatedAt;
+
 	}
 
 	public UserPost(User userId, User senderId, String message, LocalDateTime createdAt, LocalDateTime updatedAt) {
@@ -55,8 +50,7 @@ public class UserPost {
 		this.userId = userId;
 		this.senderId = senderId;
 		this.message = message;
-		this.createdAt = createdAt;
-		UpdatedAt = updatedAt;
+
 	}
 	
 	

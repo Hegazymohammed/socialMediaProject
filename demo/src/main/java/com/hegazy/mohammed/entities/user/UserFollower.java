@@ -2,6 +2,7 @@ package com.hegazy.mohammed.entities.user;
 
 import java.time.LocalDateTime;
 
+import com.hegazy.mohammed.entities.audit.UserAuditing;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -23,10 +24,8 @@ import lombok.ToString;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserFollower {
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id;
+public class UserFollower extends UserAuditing {
+
 	@ManyToOne
 	@JoinColumn(name="targetId")
 	@ToString.Exclude
@@ -38,8 +37,7 @@ public class UserFollower {
 	private User sourceId;
 	
 	private int type;
-	private LocalDateTime createdAt;
-	private LocalDateTime updatedAt;
+
 	
 	
 }

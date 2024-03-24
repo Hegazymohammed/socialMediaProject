@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import com.hegazy.mohammed.entities.audit.UserAuditing;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,10 +20,8 @@ import lombok.ToString;
 @Setter
 @Entity
 @Table(name="user_friend")
-public class UserFriend {
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id;
+public class UserFriend extends UserAuditing {
+
 	@ManyToOne
 	@JoinColumn(name="sourceId")
 	@JsonIgnore
@@ -34,8 +33,7 @@ public class UserFriend {
 	private User targetId;
 	
 	private int status;
-	private LocalDateTime createdAt;
-	private LocalDateTime updatedAt;
+
 	private String notes;
 	
 	
